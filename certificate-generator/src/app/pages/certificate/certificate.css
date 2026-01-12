@@ -6,6 +6,7 @@
 
 .btn-back {
   gap: 6px;
+  cursor: pointer;
 }
 
 .btn-back p {

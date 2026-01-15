@@ -19,17 +19,11 @@
     </div>
     <div class="mb-3 d-flex align-items-end custom-input-group">
       <div class="flex-grow-1 me-2">
-        <label [ngClass]="{'text-danger-label' : validation(taskRef)}" for="task" class="form-label">Task</label>
+        <label class="form-label">Task</label>
         <input [(ngModel)]="task" name="task" #taskRef="ngModel" maxlength="50" required id="task" type="text"
           class="form-control custom-input" placeholder="Task Name">
-        @if(validation(taskRef)){
-        <div class="error-message d-flex align-items-center">
-          <i class="ph ph-warning-circle"></i>
-          <p class="m-0">Erro message</p>
-        </div>
-        }
       </div>
-      <app-secondary-button [ngStyle]="validation(taskRef) ? {'margin-bottom': '24px'} : {}"></app-secondary-button>
+      <app-secondary-button [disableButton]="task.length == 0" textButton="Add" phClass="ph ph-plus"></app-secondary-button>
     </div>
     <div class="task-group ">
       <label class="form-label">Task list</label>
@@ -47,6 +41,6 @@
         }
       </div>
     </div>
-    <app-primary-button></app-primary-button>
+    <app-primary-button [disableButton]="!validForm()" textButton="Generate certificate"></app-primary-button>
   </div>
 </form>

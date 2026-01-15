@@ -13,9 +13,13 @@ import { CommonModule } from '@angular/common';
 export class CertificateForm {
   name: string = '';
   task: string = '';
-  tasks: string[] = [];
+  tasks: string[] = ['React', 'Angular'];
 
   validation(control: NgModel){
     return control.invalid && control.touched;
+  }
+
+  validForm(){
+    return this.tasks.length > 0 && this.name.length > 0;
   }
 }

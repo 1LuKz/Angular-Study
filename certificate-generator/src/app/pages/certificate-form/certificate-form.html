@@ -8,7 +8,7 @@
     <h2 class="card-title">New Certificate</h2>
     <div class="mb-3 custom-input-group">
       <label [ngClass]="{'text-danger-label' : validation(nameRef)}" for="name" class="form-label">Name</label>
-      <input [(ngModel)]="name" name="name" #nameRef="ngModel" maxlength="150" required id="name" type="text"
+      <input [(ngModel)]="certificate.name" name="name" #nameRef="ngModel" maxlength="150" required id="name" type="text"
         class="form-control custom-input" placeholder="Student Name">
       @if(validation(nameRef)){
       <div class="error-message d-flex align-items-center">
@@ -28,19 +28,19 @@
     <div class="task-group ">
       <label class="form-label">Task list</label>
       <div class="item-list w-100">
-        @for (task of tasks; track $index) {
+        @for (task of certificate.tasks; track $index) {
         <div class="item">
           <span class="item-text">{{task}}</span>
           <div (click)="removeTask($index)" class="remove-btn">
             <i class="ph-bold ph-x"></i>
           </div>
         </div>
-        @if($index + 1 != tasks.length){
+        @if($index + 1 != certificate.tasks.length){
         <hr>
         }
         }
       </div>
     </div>
-    <app-primary-button [disableButton]="!validForm()" textButton="Generate certificate"></app-primary-button>
+    <app-primary-button (click)="submit()" [disableButton]="!validForm()" textButton="Generate certificate"></app-primary-button>
   </div>
 </form>

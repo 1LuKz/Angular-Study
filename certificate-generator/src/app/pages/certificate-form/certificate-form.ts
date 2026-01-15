@@ -14,7 +14,8 @@ import { certificate } from '../../interfaces/certificate';
 export class CertificateForm {
   certificate: certificate = {
     name: '',
-    tasks: []
+    tasks: [],
+    issued: ''
   }
 
   task: string = '';
@@ -40,5 +41,16 @@ export class CertificateForm {
     if(!this.validForm){
       return;
     }
+    this.certificate.issued = this.currentDate();
+  }
+
+  currentDate(){
+    const currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const year = currentDate.getFullYear();
+
+    const formattedData = `${month}/${day}/${year}`;
+    return formattedData;
   }
 }

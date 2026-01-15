@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class CertificateForm {
   name: string = '';
   task: string = '';
-  tasks: string[] = ['React', 'Angular'];
+  tasks: string[] = [];
 
   validation(control: NgModel){
     return control.invalid && control.touched;
@@ -21,5 +21,14 @@ export class CertificateForm {
 
   validForm(){
     return this.tasks.length > 0 && this.name.length > 0;
+  }
+
+  addTask(){
+    this.tasks.push(this.task);
+    this.task = '';
+  }
+
+  removeTask(index: number){
+    this.tasks.splice(index, 1);
   }
 }

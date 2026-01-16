@@ -7,7 +7,11 @@ import { certificate } from '../interfaces/certificate';
 export class CertificateService {
   certificates: certificate[] = [];
 
+  constructor(){
+  }
+
   addCertificate(certificate: certificate){
-    this.certificates.push(certificate);
+    this.certificates.push({...certificate});
+    localStorage.setItem('certificates', JSON.stringify(this.certificates));
   }
 }

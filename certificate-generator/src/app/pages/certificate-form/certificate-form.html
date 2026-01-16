@@ -23,7 +23,7 @@
         <input [(ngModel)]="task" name="task" #taskRef="ngModel" maxlength="50" required id="task" type="text"
           class="form-control custom-input" placeholder="Task Name">
       </div>
-      <app-secondary-button (click)="addTask()" [disableButton]="task.length == 0" textButton="Add" phClass="ph ph-plus"></app-secondary-button>
+      <app-secondary-button (click)="addTask()" [disableButton]="!task || task.length == 0" textButton="Add" phClass="ph ph-plus"></app-secondary-button>
     </div>
     <div class="task-group ">
       <label class="form-label">Task list</label>

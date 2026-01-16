@@ -7,12 +7,12 @@
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item d-flex align-items-center">
-            <i class="ph ph-medal"></i>
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true }" class="nav-link p-0">Certificates List</a>
+            <i class="ph ph-medal" [ngClass]="{'active': rlaCertificateList.isActive}"></i>
+            <a routerLink="/" #rlaCertificateList="routerLinkActive" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true }" class="nav-link p-0">Certificates List</a>
           </li>
           <li class="nav-item d-flex align-items-center">
-            <i class="ph ph-circles-three-plus"></i>
-            <a routerLink="/certificates/new" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true }" class="nav-link p-0">Generate certificate</a>
+            <i class="ph ph-circles-three-plus" [ngClass]="{'active': rlaNewCertificate.isActive}"></i>
+            <a routerLink="/certificates/new" #rlaNewCertificate="routerLinkActive" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true }" class="nav-link p-0">Generate certificate</a>
           </li>
         </ul>
       </div>

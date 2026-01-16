@@ -10,6 +10,10 @@
   height: 30px;
 }
 
+.active{
+  color: #3B5AC2;
+}
+
 .nav-link{
   padding: 6px !important;
 }

@@ -1,9 +1,10 @@
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterModule],
+  imports: [RouterLink, RouterModule, CommonModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

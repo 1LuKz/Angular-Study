@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SecondaryButton } from "../../_components/secondary-button/secondary-button";
 import { PrimaryButton } from "../../_components/primary-button/primary-button";
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { certificate } from '../../interfaces/certificate';
 import { CertificateService } from '../../_services/certificate.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-certificate-form',
@@ -13,9 +14,11 @@ import { CertificateService } from '../../_services/certificate.service';
   styleUrl: './certificate-form.css',
 })
 export class CertificateForm {
-  constructor(private certificateService: CertificateService){}
+  constructor(private certificateService: CertificateService) { }
+  @ViewChild('form') form!: NgForm
 
   certificate: certificate = {
+    id: '',
     name: '',
     tasks: [],
     issued: ''
@@ -23,32 +26,40 @@ export class CertificateForm {
 
   task: string = '';
 
-  validation(control: NgModel){
+  validation(control: NgModel) {
     return control.invalid && control.touched;
   }
 
-  validForm(){
+  validForm() {
     return this.certificate.tasks.length > 0 && this.certificate.name.length > 0;
   }
 
-  addTask(){
+  addTask() {
+    if(this.task.length == 0){
+      return;
+    }
+
     this.certificate.tasks.push(this.task);
     this.task = '';
   }
 
-  removeTask(index: number){
+  removeTask(index: number) {
     this.certificate.tasks.splice(index, 1);
   }
 
-  submit(){
-    if(!this.validForm){
+  submit() {
+    if (!this.validForm) {
       return;
     }
     this.certificate.issued = this.currentDate();
+    this.certificate.id = uuidv4();
     this.certificateService.addCertificate(this.certificate);
+
+    this.certificate = this.initialCertificate();
+    this.form.resetForm();
   }
 
-  currentDate(){
+  currentDate() {
     const currentDate = new Date();
     const day = String(currentDate.getDate()).padStart(2, "0");
     const month = String(currentDate.getMonth() + 1).padStart(2, "0");
@@ -56,5 +67,14 @@ export class CertificateForm {
 
     const formattedData = `${month}/${day}/${year}`;
     return formattedData;
+  }
+
+  initialCertificate(): certificate{
+    return {
+      id: '',
+      name: '',
+      tasks: [],
+      issued: ''
+    }
   }
 }

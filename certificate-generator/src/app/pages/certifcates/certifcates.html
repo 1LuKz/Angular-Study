@@ -4,6 +4,7 @@
     <p class="custom-subtitle mb-4">Browser all generated certificates</p>
   </div>
 
+  @if(certificates.length == 0){
   <div class="custom-card w-100">
     <i class="ph ph-certificate"></i>
     <div class="custom-warning-titles">
@@ -12,8 +13,14 @@
     </div>
     <app-secondary-button routerLink="/certificates/new" textButton="Generate certificate"></app-secondary-button>
   </div>
+  }
 
-  <!-- <div class="list-certificates w-100">
-    <app-item-certificate></app-item-certificate>
-  </div> -->
+  @if(certificates.length > 0){
+  <div class="list-certificates w-100">
+    @for (certificate of certificates; track $index) {
+    <app-item-certificate [studentName]="certificate.name" [issued]="certificate.issued"
+      [id]="certificate.id"></app-item-certificate>
+    }
+  </div>
+  }
 </div>

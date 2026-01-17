@@ -4,8 +4,9 @@
       <i class="ph ph-arrow-left"></i>
       <p class="m-0">Back</p>
     </div>
-    <app-secondary-button textButton="Download" phClass="ph ph-download"></app-secondary-button>
+    <app-secondary-button textButton="Download" phClass="ph ph-download-simple"></app-secondary-button>
   </div>
+  @if(certificate){
   <div class="certificate d-flex justify-content-center align-items-center">
     <img class="medal-icon" src="certificate/certificate_ribbon.png" alt="Medal Icon">
     <div class="certificate-content">
@@ -15,15 +16,14 @@
           <h1>THIS CERTIFICATE OF COMPLETION</h1>
           <p>This certificate certifies that</p>
         </div>
-        <p class="student-name">Lucas de Paula</p>
+        <p class="student-name">{{certificate.name}}</p>
         <div class="task-list-group">
           <p class="task-list-title">Has successfully completed the following activities</p>
-          <p class="task-list">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aliquam similique labore porro. Cupiditate
-            totam dolorum, accusamus deleniti magni ratione autem consequuntur tempora? Porro totam earum corporis nisi
-          </p>
+          <p class="task-list">{{certificate.tasks.join(', ')}}</p>
         </div>
       </div>
-      <p class="issued-date">Issued in 12/30/2025</p>
+      <p class="issued-date">Issued in {{certificate.issued}}</p>
     </div>
   </div>
+  }
 </div>

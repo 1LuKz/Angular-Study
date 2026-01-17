@@ -21,6 +21,6 @@ export class App implements OnInit {
   ngOnInit(): void {
     const certifcates = localStorage.getItem('certificates');
     this.certificateService.certificates = certifcates ? JSON.parse(certifcates) : [];
-    console.log(this.certificateService.certificates);
+    // console.log(this.certificateService.certificates);
   }
 }
